@@ -27,5 +27,7 @@ urlpatterns = [
     path('add_class/', home.views.add_class, name="add_class"),
     path('invoice/student/', invoices.views.student_invoice,
          name="student_invoice"),
+    path('invoice/generate', invoices.views.generate_invoice,
+         name="invoice_generate")
 
 ]
