@@ -24,5 +24,8 @@ urlpatterns = [
     path('home/', home.views.landing, name="landing"),
     path('reports/', reports.views.dashboard, name="dashboard"),
     path('invoices/', invoices.views.home, name="invoices_home"),
-    path('add_class/', home.views.add_class, name="add_class")
+    path('add_class/', home.views.add_class, name="add_class"),
+    path('invoice/student/', invoices.views.student_invoice,
+         name="student_invoice"),
+
 ]

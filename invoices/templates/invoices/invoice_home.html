@@ -23,9 +23,79 @@
           </div>
         </nav>
         <div class="jumbotron text-center">
-            <h3>Invoices would show up here</h3>
+            <h3>Generate class data and invoice</h3>
         </div>
-    </div>
+        <div class="container">
+                <form class="form-inline" method="post" action="{% url 'student_invoice' %}">
+                    {% csrf_token %}
+                    <div class="form-group" style="padding-left: 20px; padding-right : 20px;">
+                      <label for="inline_student">Student</label>
+                      <select name="invoice_student" id="inline_student" required>
+                          {% for student in students.all %}
+                          <option>
+                              {{student.name}}
+                          </option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group" style="padding-left: 20px; padding-right : 20px;">
+                      <label for="inline_start_date">Start Date</label>
+                      <input type="date" name="invoice_start_date" id="inline_start_date" required>
+                    </div>
+                    <div class="form-group" style="padding-left: 20px; padding-right : 20px;">
+                      <label for="inline_end_date">End Date</label>
+                      <input type="date" name="invoice_end_date" id="inline_end_date" required>
+                    </div>
+                    <div class="form-group" style="padding-left: 20px; padding-right : 20px;">
+                      <label for="inline_submit"></label>
+                        <button class="btn btn-primary" type="submit" id="inline_submit">Fetch</button>
+                    </div>
+                    </form>
+            </div>
+        <div class="container">
+            {% if class_data %}
+                     <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Student</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Subject</th>
+                            <th>Homework</th>
+                            <th>Brought Over</th>
+                            <th>Duration</th>
+                            <th>Remarks</th>
+                            <th>Payout</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for cl in class_data %}
+                          <tr>
+                            <td>{{cl.student}}</td>
+                            <td>{{cl.date}}</td>
+                            <td>{{cl.start_time}}</td>
+                            <td>{{cl.end_time}}</td>
+                            <td>{{cl.subject}}</td>
+                            <td>{{cl.homework}}</td>
+                            <td>{{cl.brought_over}}</td>
+                            <td>{{cl.duration}}</td>
+                            <td>{{cl.remarks}}</td>
+                            <td>{{cl.payout}}</td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                      </div>
+                      <div class="container">
+                            <button class="btn btn-primary" type="button">Generate Invoice</button>
+                      </div>
+            {% endif %}
+        </div>
+        </div>
+
+
 
 </body>
 </html>
