@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{% url 'landing' %}">Earnings</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Reports</a></li>
+              <li><a href="{% url 'invoices_home' %}">Invoices</a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Classes conducted this month</h4>
+                  <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Student</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>Subject</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for class in classes.all %}
+                          <tr>
+                            <td>{{class.student}}</td>
+                            <td>{{class.date}}</td>
+                            <td>{{class.start_time}}</td>
+                            <td>{{class.subject}}</td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                      </div>
+            </div>
+            <div class="col-md-6">
+                <div id="total_earnings_month">
+                    <h4>Totals this month</h4>
+                  <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Payout</th>
+                            <th>Hours</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{{total}}</td>
+                            <td>{{hours}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </div>
+
+                    <hr>
+                </div>
+                <br>
+                <div id="student_wise">
+                    <h4>Student Wise Split</h4>
+                  <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Student</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for key, value in student_wise.items %}
+                          <tr>
+                            <td>{{key}}</td>
+                            <td>{{value}}</td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                      </div>
+                </div>
+                <br>
+                <div id="subject_wise">
+                    <h4> Subject Wise Split</h4>
+                  <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Subject</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for key, value in subject_wise.items %}
+                          <tr>
+                            <td>{{key}}</td>
+                            <td>{{value}}</td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                      </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
