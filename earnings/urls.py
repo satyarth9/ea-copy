@@ -18,6 +18,7 @@ from django.urls import path
 import home.views
 import reports.views
 import invoices.views
+import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,9 @@ urlpatterns = [
     path('invoice/student/', invoices.views.student_invoice,
          name="student_invoice"),
     path('invoice/generate', invoices.views.generate_invoice,
-         name="invoice_generate")
+         name="invoice_generate"),
+    path('', accounts.views.home, name='home'),
+    path('login/', accounts.views.login, name='login'),
+    path('logout/', accounts.views.logout, name= "logout")
 
 ]

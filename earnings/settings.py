@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'reports.apps.ReportsConfig',
     'invoices.apps.InvoicesConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.db.models import F
 from .models import Class
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def dashboard(request):
     classes = Class.objects.filter(
         date__gte='2020-10-01'
