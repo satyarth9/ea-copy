@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .models import Student, Subject
 from reports.models import Class
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def landing(request):
     students = Student.objects
     subjects = Subject.objects
