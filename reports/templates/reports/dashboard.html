@@ -29,7 +29,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <h4>Classes conducted this month</h4>
                   <div class="table-responsive">
                       <table class="table table-hover">
@@ -54,7 +54,7 @@
                       </table>
                       </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div id="total_earnings_month">
                     <h4>Totals this month</h4>
                   <div class="table-responsive">
@@ -63,12 +63,14 @@
                           <tr>
                             <th>Payout</th>
                             <th>Hours</th>
+                            <th>Per Hour</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>{{total}}</td>
                             <td>{{hours}}</td>
+                            <td>{{hourly_average}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -85,13 +87,16 @@
                           <tr>
                             <th>Student</th>
                             <th>Total</th>
+                            <th>Hours</th>
                           </tr>
                         </thead>
                         <tbody>
                         {% for key, value in student_wise.items %}
                           <tr>
                             <td>{{key}}</td>
-                            <td>{{value}}</td>
+                            {% for v in value %}
+                              <td>{{v}}</td>
+                            {% endfor %}
                           </tr>
                         {% endfor %}
                         </tbody>
@@ -107,13 +112,16 @@
                           <tr>
                             <th>Subject</th>
                             <th>Total</th>
+                            <th>Hours</th>
                           </tr>
                         </thead>
                         <tbody>
                         {% for key, value in subject_wise.items %}
                           <tr>
                             <td>{{key}}</td>
-                            <td>{{value}}</td>
+                            {% for v in value %}
+                              <td>{{v}}</td>
+                            {% endfor %}
                           </tr>
                         {% endfor %}
                         </tbody>
