@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'reports.apps.ReportsConfig',
     'invoices.apps.InvoicesConfig',
     'accounts.apps.AccountsConfig',
+    'charts.apps.ChartsConfig'
 ]
 
 MIDDLEWARE = [

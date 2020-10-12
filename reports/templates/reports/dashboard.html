@@ -17,7 +17,8 @@
               <a class="navbar-brand" href="{% url 'landing' %}">Earnings</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Reports</a></li>
+              <li class="active"><a href="#">Reports</a></li>
+              <li><a href="{% url 'charts' %}">Charts</a></li>
               <li><a href="{% url 'invoices_home' %}">Invoices</a></li>
               <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>

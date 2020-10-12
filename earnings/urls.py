@@ -19,6 +19,7 @@ import home.views
 import reports.views
 import invoices.views
 import accounts.views
+import charts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +33,7 @@ urlpatterns = [
          name="invoice_generate"),
     path('', accounts.views.home, name='home'),
     path('login/', accounts.views.login, name='login'),
-    path('logout/', accounts.views.logout, name= "logout")
+    path('logout/', accounts.views.logout, name= "logout"),
+    path('charts/', charts.views.home, name="charts"),
 
 ]
