@@ -59,21 +59,18 @@
                 <div id="hc_div_daily"></div>
                 <hr>
                 <div id="hc_div_cumulative"></div>
+                <hr>
+                <div id="hc_div_students"></div>
 
                 <script language="JavaScript">
                      $(document).ready(function() {
                      daily_total_charts();
                      cumulative_charts();
+                     student_wise_charts();
                      });
 
                      function daily_total_charts(){
-                     dates = {{charts_date}};
-                     var dates_js = []
-                     for (i = 0; i < dates.length; i++){
-                        console.log(dates[i] + " Oct")
-                        dates_js.push(dates[i] + " Oct")
-                     }
-                     console.log(dates);
+                     dates = {{charts_date|safe}};
                         var chart = {
                            type: 'column'
                         };
@@ -81,7 +78,7 @@
                            text: 'Daily Earning'
                         };
                         var xAxis = {
-                           categories: dates_js,
+                           categories: dates,
                            title: {
                               text: null
                            }
@@ -142,13 +139,7 @@
 
 
                     function cumulative_charts(){
-                     dates = {{charts_date}};
-                     var dates_js = []
-                     for (i = 0; i < dates.length; i++){
-                        console.log(dates[i] + " Oct")
-                        dates_js.push(dates[i] + " Oct")
-                     }
-                     console.log(dates);
+                     dates = {{charts_date|safe}};
                         var chart = {
                            type: 'column'
                         };
@@ -156,7 +147,7 @@
                            text: 'Cumulative Earnings'
                         };
                         var xAxis = {
-                           categories: dates_js,
+                           categories: dates,
                            title: {
                               text: null
                            }
@@ -212,6 +203,51 @@
                         json.legend = legend;
                         json.credits = credits;
                         $('#hc_div_cumulative').highcharts(json);
+                        }
+
+
+
+                        function student_wise_charts(){
+                            students = {{students|safe}};
+                            student_totals = {{chart_student_totals|safe}};
+                            series_data = []
+                            for (i = 0; i < students.length; i++){
+                                student_info = [students[i], student_totals[i]];
+                                series_data.push(student_info);
+                            }
+                        var chart = {
+                           plotBackgroundColor: null,
+                           plotBorderWidth: null,
+                           plotShadow: false
+                        };
+                        var title = {
+                           text: 'Student Wise Split'
+                        };
+                        var tooltip = {
+                           pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        };
+                        var plotOptions = {
+                           pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                              dataLabels: {
+                                 enabled: true
+                              }
+                           }
+                        };
+                        var series = [{
+                            type : 'pie',
+                            name : 'share',
+                            data : series_data
+                        }];
+
+                        var json = {};
+                        json.chart = chart;
+                        json.title = title;
+                        json.series = series;
+                        json.plotOptions = plotOptions;
+                        json.tooltip = tooltip;
+                        $('#hc_div_students').highcharts(json);
                         }
                 </script>
             </div>
