@@ -9,7 +9,7 @@ def dashboard(request, tab_id):
     if tab_id in (1,2):
         start_date, end_date = get_dates(tab_id)
     else:
-        start_date, end_date = None, None
+        start_date, end_date = request.POST["modal_start_date"], request.POST["modal_end_date"]
     classes = Class.objects.filter(
         date__gte=start_date,
         date__lte=end_date
