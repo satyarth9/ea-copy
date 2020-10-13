@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from reports.models import Class
+from datetime import datetime
 import reports.views as rviews
-from json import dumps
 
 
-def home(request):
+def home(request, tab_id):
+    if tab_id in (1,2):
+        start_date, end_date = rviews.get_dates(tab_id)
+    else:
+        start_date, end_date = None, None
     classes = Class.objects.filter(
-        date__gte="2020-10-1",
-        date__lte="2020-10-31"
+        date__gte=start_date,
+        date__lte=end_date
     )
     day_totals = get_day_totals(classes)
     charts_date, charts_day_totals, charts_cum_totals = get_for_chart(day_totals)

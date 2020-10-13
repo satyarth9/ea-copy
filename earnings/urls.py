@@ -24,7 +24,7 @@ import charts.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home.views.landing, name="landing"),
-    path('reports/', reports.views.dashboard, name="dashboard"),
+    path('reports/<int:tab_id>/', reports.views.dashboard, name="dashboard"),
     path('invoices/', invoices.views.home, name="invoices_home"),
     path('add_class/', home.views.add_class, name="add_class"),
     path('invoice/student/', invoices.views.student_invoice,
@@ -34,6 +34,6 @@ urlpatterns = [
     path('', accounts.views.home, name='home'),
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name= "logout"),
-    path('charts/', charts.views.home, name="charts"),
+    path('charts/<int:tab_id>/', charts.views.home, name="charts"),
 
 ]

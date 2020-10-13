@@ -18,6 +18,7 @@ def home(request):
 invoice_particulars = []
 class_data = None
 
+
 def student_invoice(request):
     global invoice_particulars, class_data
     if request.method == "POST":
@@ -31,7 +32,7 @@ def student_invoice(request):
         student= student,
         date__gte=start_date,
         date__lte=end_date
-    )
+    ).order_by('date', 'start_time')
     students = Student.objects
     context = {
         'students': students,

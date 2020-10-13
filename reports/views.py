@@ -1,14 +1,19 @@
 from django.shortcuts import render
 from .models import Class
 from django.contrib.auth.decorators import login_required
+from datetime import datetime, date, timedelta
 
 
 @login_required
-def dashboard(request):
+def dashboard(request, tab_id):
+    if tab_id in (1,2):
+        start_date, end_date = get_dates(tab_id)
+    else:
+        start_date, end_date = None, None
     classes = Class.objects.filter(
-        date__gte='2020-10-01',
-        date__lte='2020-10-31'
-    )
+        date__gte=start_date,
+        date__lte=end_date
+    ).order_by('date', 'start_time')
     total, hours, hourly_average = get_totals(classes)
     student_wise = get_student_wise(classes)
     subject_wise = get_subject_wise(classes)
@@ -55,3 +60,26 @@ def get_subject_wise(classes):
             s_wise[c.subject].append(c.duration)
     s_wise = {k: v for k, v in sorted(s_wise.items(), key=lambda item: item[1], reverse=True)}
     return s_wise
+
+
+def get_dates(tab_id):
+    if tab_id == 1:
+        start_date = datetime.now().replace(day=1)
+        month = int(datetime.now().strftime("%m"))
+        if month in [1, 3, 5, 7, 8, 10, 12]:
+            last_date = 31
+        elif month in [4, 6, 9, 11]:
+            last_date = 30
+        else:
+            if datetime.now().year % 4 == 0:  # not checking for century years
+                last_date = 29
+            else:
+                last_date = 28
+        end_date = datetime.now().replace(day=last_date)
+        return start_date, end_date
+    if tab_id == 2:
+        today = date.today()
+        first = today.replace(day=1)
+        prev_month_last = first - timedelta(days=1)
+        prev_month_first = prev_month_last.replace(day=1)
+        return prev_month_first, prev_month_last
