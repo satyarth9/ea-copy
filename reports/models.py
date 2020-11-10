@@ -8,9 +8,9 @@ class Class(models.Model):
     end_time = models.TimeField()
     subject = models.CharField(max_length=30)
     topic = models.CharField(max_length=60)
-    homework = models.CharField(max_length=60)
-    brought_over = models.CharField(max_length=60)
-    remarks = models.CharField(max_length=100)
+    homework = models.CharField(max_length=60, default='None')
+    brought_over = models.CharField(max_length=60, default='No')
+    remarks = models.CharField(max_length=100, default="None")
     duration = models.FloatField()
     payout = models.IntegerField()
 

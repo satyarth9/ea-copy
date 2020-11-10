@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>Payments</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <script src = "https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{% url 'landing' %}">Earnings</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{% url 'dashboard' 1%}">Reports</a></li>
+              <li><a href="{% url 'charts' 1 %}">Charts</a></li>
+              <li><a href="{% url 'invoices_home' %}">Invoices</a></li>
+              <li class="active"><a href="#">Payments</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="jumbotron text-center">
+            <h3>View All Payments </h3>
+        </div>
+        <div class="row">
+            <div class="col align-self-center">
+              <div class="btn-group-vertical">
+
+                   {% for key,value in payments_json.items %}
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#{{key}}">{{key}}</button>
+                    <div id="{{key}}" class="collapse">
+                        <div class="table-responsive">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>Span</th>
+                                <th>Amount</th>
+                                <th>Received Date</th>
+                                <th>Mode</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for v in value %}
+                                <tr>
+                                {% for m in v %}
+                                    <td>{{m}}</td>
+                                {% endfor %}
+                                {% endfor %}
+                                </tr>
+                            </tbody>
+                          </table>
+                      </div>
+
+
+                    </div>
+                    {% endfor %}
+                  </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

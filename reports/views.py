@@ -31,6 +31,8 @@ def get_totals(classes):
     for c in classes:
         total += c.payout
         hours += c.duration
+    if hours == 0:
+        return 0, 0, 0
     return total, hours, int(total/hours)
 
 

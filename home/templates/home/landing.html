@@ -20,6 +20,7 @@
               <li><a href="{% url 'dashboard' 1 %}">Reports</a></li>
               <li><a href="{% url 'charts' 1 %}">Charts</a></li>
               <li><a href="{% url 'invoices_home' %}">Invoices</a></li>
+              <li><a href="{% url 'payments' %}">Payments</a></li>
               <li><a href="{% url 'logout' %}">Logout</a></li>
 
             </ul>
@@ -91,7 +92,7 @@
                       <label>Homework</label>
                     </div>
                     <div class="form-group col-md-6">
-                      <input type="text" class="form-control" id="record_homework" placeholder="homework" name="homework" required>
+                      <input type="text" class="form-control" id="record_homework" placeholder="homework" name="homework" value="None" required>
                     </div>
                   </div>
                   <div class="form-row">
@@ -99,7 +100,7 @@
                       <label>Brought Over</label>
                     </div>
                     <div class="form-group col-md-6">
-                      <input type="text" class="form-control" id="record_brought_over" placeholder="anything brought?" name="brought_over" required>
+                      <input type="text" class="form-control" id="record_brought_over" placeholder="anything brought?" name="brought_over" value="No" required>
                     </div>
                   </div>
                   <div class="form-row">
@@ -107,7 +108,7 @@
                       <label>Remarks</label>
                     </div>
                     <div class="form-group col-md-6">
-                      <input type="text" class="form-control" id="record_remarks" placeholder="remarks" name="remarks" required>
+                      <input type="text" class="form-control" id="record_remarks" placeholder="remarks" name="remarks" value="None" required>
                     </div>
                   </div>
                   <div class="form-row">

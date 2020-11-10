@@ -12,7 +12,7 @@ def home(request, tab_id):
     classes = Class.objects.filter(
         date__gte=start_date,
         date__lte=end_date
-    )
+    ).order_by("date", "start_time")
     day_totals = get_day_totals(classes)
     charts_date, charts_day_totals, charts_cum_totals = get_for_chart(day_totals)
     charts_students, charts_stu_totals = get_student_wise(classes)
