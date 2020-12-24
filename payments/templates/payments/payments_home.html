@@ -31,13 +31,20 @@
             <h3>View All Payments </h3>
         </div>
         <div class="row">
-            <div class="col align-self-center">
-              <div class="btn-group-vertical">
-
-                   {% for key,value in payments_json.items %}
-                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#{{key}}">{{key}}</button>
-                    <div id="{{key}}" class="collapse">
-                        <div class="table-responsive">
+            {% for key, value in payments_json.items %}
+            <div class="col-sm-3">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{key}}</h5>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{key}}">View Payments</button>
+                   <div class="modal fade" id="{{key}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Payments from {{key}}</h5>
+                          </div>
+                          <div class="modal-body">
+                              <div class="table-responsive">
                           <table class="table table-hover">
                             <thead>
                               <tr>
@@ -59,11 +66,18 @@
                           </table>
                       </div>
 
-
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    {% endfor %}
                   </div>
             </div>
+                <hr>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
