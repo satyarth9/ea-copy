@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'charts.apps.ChartsConfig',
     'payments.apps.PaymentsConfig',
+    'links.apps.LinksConfig',
 ]
 
 MIDDLEWARE = [

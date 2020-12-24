@@ -19,7 +19,7 @@ import home.views
 import reports.views
 import invoices.views
 import accounts.views
-import charts.views, payments.views
+import charts.views, payments.views, links.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,6 +35,7 @@ urlpatterns = [
     path('login/', accounts.views.login, name='login'),
     path('logout/', accounts.views.logout, name= "logout"),
     path('charts/<int:tab_id>/', charts.views.home, name="charts"),
-    path('payments/', payments.views.home, name='payments')
+    path('payments/', payments.views.home, name='payments'),
+    path('links/', links.views.all_links, name='links')
 
 ]
