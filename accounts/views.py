@@ -3,6 +3,8 @@ from django.contrib import auth
 
 
 def home(request):
+    if request.user.is_authenticated:
+        return redirect('landing')
     return render(request, 'accounts/login.html')
 
 

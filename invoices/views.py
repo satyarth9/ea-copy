@@ -4,6 +4,9 @@ from reports.models import Class
 import csv
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
 
 
 @login_required
@@ -42,6 +45,16 @@ def student_invoice(request):
 
 
 def generate_invoice(request):
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+    p.drawString(100, 100, "Automatically doing it baby")
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='Invoice.pdf')
+
+
+def generate_invoice_legacy(request):
     global class_data
     response = HttpResponse(content_type="text/csv")
     response['Content-Disposition'] = f'attachment; filename={invoice_particulars[0]}_' \

@@ -15,4 +15,4 @@ class Class(models.Model):
     payout = models.IntegerField()
 
     def __str__(self):
-        return f" {self.student} / {self.date} / {self.start_time} / {self.subject}"
+        return f" {self.student} / {self.date} / {self.start_time} / {self.subject} / INR {self.payout}"

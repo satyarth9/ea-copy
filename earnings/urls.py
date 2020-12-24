@@ -29,7 +29,7 @@ urlpatterns = [
     path('add_class/', home.views.add_class, name="add_class"),
     path('invoice/student/', invoices.views.student_invoice,
          name="student_invoice"),
-    path('invoice/generate', invoices.views.generate_invoice,
+    path('invoice/generate', invoices.views.generate_invoice_legacy,
          name="invoice_generate"),
     path('', accounts.views.home, name='home'),
     path('login/', accounts.views.login, name='login'),
