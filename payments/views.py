@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Payment
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def home(request):
     payments = Payment.objects.all()
     payments_json = get_students(payments)

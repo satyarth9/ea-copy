@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from reports.models import Class
-from datetime import datetime
 import reports.views as rviews
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def home(request, tab_id):
     if tab_id in (1,2):
         start_date, end_date = rviews.get_dates(tab_id)

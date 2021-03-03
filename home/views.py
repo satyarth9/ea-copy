@@ -11,6 +11,7 @@ def landing(request):
     return render(request, 'home/landing.html', {'students': students, 'subjects' : subjects})
 
 
+@login_required
 def add_class(request):
     if request.method == "POST":
         session = Class()
