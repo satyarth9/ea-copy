@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="{% url 'landing' %}">Earnings</a>
@@ -79,6 +79,7 @@
                             <th>Date</th>
                             <th>Start Time</th>
                             <th>Subject</th>
+                            <th>Payout</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -88,6 +89,7 @@
                             <td>{{class.date}}</td>
                             <td>{{class.start_time}}</td>
                             <td>{{class.subject}}</td>
+                            <td>{{class.payout}}</td>
                           </tr>
                         {% endfor %}
                         </tbody>

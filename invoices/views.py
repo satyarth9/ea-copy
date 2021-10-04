@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import io
 from django.http import FileResponse
-from reportlab.pdfgen import canvas
 
 
 @login_required
@@ -42,35 +41,6 @@ def student_invoice(request):
         'class_data': class_data
     }
     return render(request, 'invoices/invoice_home.html', context)
-
-
-def generate_invoice(request):
-    left_margin = 100
-    top_margin = 800
-    cursor_x = left_margin
-    cursor_y = top_margin
-    buffer = io.BytesIO()
-    p = canvas.Canvas(buffer)
-#    p.drawImage("https://www.smallworldfs.com/filemanager/userfiles/news/smallnew2.png", left_margin, top_margin)
-    p.setAuthor("Asymptote Education")
-    p.setFont("Helvetica", 20)
-    p.setFillColorRGB(0,0,1)
-    p.setStrokeColorRGB(0,0,0.5)
-    p.drawString(cursor_x + 20, cursor_y, "Class Details:")
-    cursor_y -= 10
-    p.rect(cursor_x, cursor_y, 300, 40, fill=0, stroke=1)
-    cursor_y -= 2
-    p.line(cursor_x, cursor_y, cursor_x + 300, cursor_y)
-    p.line(cursor_x, cursor_y, cursor_x, cursor_y - len(class_data) * 15)
-    cursor_x += 5
-    p.setFont("Helvetica", 12)
-    for i in range(len(class_data)):
-        cursor_y -= 15
-        p.drawString(cursor_x, cursor_y, f"{class_data[i].date} {class_data[i].payout}")
-    p.showPage()
-    p.save()
-    buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename=f"{invoice_particulars[0]} - Dec20")
 
 
 @login_required
