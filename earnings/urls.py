@@ -36,6 +36,7 @@ urlpatterns = [
     path('logout/', accounts.views.logout, name= "logout"),
     path('charts/<int:tab_id>/', charts.views.home, name="charts"),
     path('payments/', payments.views.home, name='payments'),
-    path('links/', links.views.all_links, name='links')
+    path('links/', links.views.all_links, name='links'),
+    path('health/',home.views.health)
 
 ]
