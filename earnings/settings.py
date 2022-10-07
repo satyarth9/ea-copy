@@ -25,7 +25,7 @@ SECRET_KEY = '&@b_vk3r(_soa3fxsz06tcw7qiq2mx+aqtbejvsouj6&328)3o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['13.126.166.91']
 
 
 # Application definition
